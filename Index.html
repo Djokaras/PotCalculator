@@ -129,10 +129,10 @@
             var bigBlind = parseFloat(bigBlindInput.value);
 
             // Arbitrary calculations for small, medium, big, and huge pots
-            var smallPot = Math.round(bigBlind * 10);
-            var mediumPot = Math.round(bigBlind * 20);
-            var bigPot = Math.round(bigBlind * 50);
-            var hugePot = Math.round(bigBlind * 100);
+            var smallPot = Math.round(bigBlind * 10).toLocaleString();
+            var mediumPot = Math.round(bigBlind * 20).toLocaleString();
+            var bigPot = Math.round(bigBlind * 50).toLocaleString();
+            var hugePot = Math.round(bigBlind * 100).toLocaleString();
 
             // Display the results
             smallResultSpan.textContent = smallPot;
