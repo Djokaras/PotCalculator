@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poker Pot Calculator</title>
+    <style>
+        *,
+        ::after,
+        ::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-family: sans-serif;
+            line-height: 1.15;
+        }
+
+        body {
+            background-color: #232935;
+            position: relative;
+            height: 100vh;
+        }
+
+        .main-container {
+            color: #fff;
+            background-color: #363f51;
+            font-size: 1.8rem;
+            padding: 2rem 2rem;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        label,
+        input {
+            margin-right: 0.5rem;
+        }
+
+        input {
+            border-radius: 5px;
+            margin-right: 1.5rem;
+            box-shadow: none;
+            text-align: right;
+            font-size: 1.5rem;
+            max-width: 5rem;
+            transition: all 0.15s ease-in-out;
+            border-style: none;
+        }
+
+        input:hover {
+            border: 2px solid #00bcdd;
+        }
+
+        input:focus {
+            outline: 3px solid #00bcdd;
+        }
+
+        button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid transparent;
+            background-color: #586278;
+            border-color: #586278;
+            border-style: none;
+            color: #fff;
+            border-collapse: collapse;
+            transition: all 0.15s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #485062;
+            border-color: #424a5b;
+            cursor: pointer;
+        }
+
+        .message {
+            display: none;
+            border-radius: 5px;
+            padding: 0.5rem 1rem;
+            background-color: #263238;
+            border: 1px solid #586278;
+            position: absolute;
+            font-size: 1.2rem;
+            bottom: -20px;
+            right: 4.5%;
+        }
+
+        button:hover + .message {
+            display: block;
+        }
+
+        .result span {
+            font-weight: bold;
+            font-size: 1.6rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        <label for="bigBlind">Big Blind:</label>
+        <input type="number" id="bigBlind" placeholder="Enter Big Blind">
+
+        <button onclick="calculatePot()">Calculate Pot</button>
+
+        <div class="result">
+            <h3>Results:</h3>
+            <p>Small: <span id="smallResult">0</span></p>
+            <p>Medium: <span id="mediumResult">0</span></p>
+            <p>Big: <span id="bigResult">0</span></p>
+            <p>Huge: <span id="hugeResult">0</span></p>
+        </div>
+    </div>
+
+    <script>
+        function calculatePot() {
+            var bigBlindInput = document.getElementById('bigBlind');
+            var smallResultSpan = document.getElementById('smallResult');
+            var mediumResultSpan = document.getElementById('mediumResult');
+            var bigResultSpan = document.getElementById('bigResult');
+            var hugeResultSpan = document.getElementById('hugeResult');
+
+            // Get the big blind value
+            var bigBlind = parseFloat(bigBlindInput.value);
+
+            // Arbitrary calculations for small, medium, big, and huge pots
+            var smallPot = Math.round(bigBlind * 10);
+            var mediumPot = Math.round(bigBlind * 20);
+            var bigPot = Math.round(bigBlind * 50);
+            var hugePot = Math.round(bigBlind * 100);
+
+            // Display the results
+            smallResultSpan.textContent = smallPot;
+            mediumResultSpan.textContent = mediumPot;
+            bigResultSpan.textContent = bigPot;
+            hugeResultSpan.textContent = hugePot;
+        }
+    </script>
+
+</body>
+</html>
