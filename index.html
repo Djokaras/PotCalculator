@@ -35,6 +35,10 @@
             transform: translate(-50%, -50%);
         }
 
+        p{
+            min-width: 8rem;
+        }
+
         label,
         input {
             margin-right: 0.5rem;
@@ -94,10 +98,32 @@
             display: block;
         }
 
+        .result {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .result h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .result-column {
+            display: flex;
+            justify-content: space-between;
+        }
+
         .result span {
             font-weight: bold;
             font-size: 1.6rem;
+            text-align: center; /* Center-align text */
         }
+
+        
+        span{
+            min-width: 10rem;
+        }
+
     </style>
 </head>
 <body>
@@ -110,34 +136,59 @@
 
         <div class="result">
             <h3>Results:</h3>
-            <p>Small: <span id="smallResult">0</span></p>
-            <p>Medium: <span id="mediumResult">0</span></p>
-            <p>Big: <span id="bigResult">0</span></p>
-            <p>Huge: <span id="hugeResult">0</span></p>
+            <div class="result-column">
+                <p>Small:</p>
+                <span id="small-from">0</span>
+                <span id="small-to">0</span>
+            </div>
+            <div class="result-column">
+                <p>Medium:</p>
+                <span id="medium-from">0</span>
+                <span id="medium-to">0</span>
+            </div>
+            <div class="result-column">
+                <p>Big:</p>
+                <span id="big-from">0</span>
+                <span id="big-to">0</span>
+            </div>
+            <div class="result-column">
+                <p>Huge:</p>
+                <span id="hugeResult" class="huge-style">0</span>
+                <span>+</span>
+            </div>
         </div>
     </div>
 
     <script>
         function calculatePot() {
             var bigBlindInput = document.getElementById('bigBlind');
-            var smallResultSpan = document.getElementById('smallResult');
-            var mediumResultSpan = document.getElementById('mediumResult');
-            var bigResultSpan = document.getElementById('bigResult');
+            var smallFromSpan = document.getElementById('small-from');
+            var smallToSpan = document.getElementById('small-to');
+            var mediumFromSpan = document.getElementById('medium-from');
+            var mediumToSpan = document.getElementById('medium-to');
+            var bigFromSpan = document.getElementById('big-from');
+            var bigToSpan = document.getElementById('big-to');
             var hugeResultSpan = document.getElementById('hugeResult');
 
             // Get the big blind value
             var bigBlind = parseFloat(bigBlindInput.value);
 
             // Adjusted calculations for small, medium, big, and huge pots
-            var smallPot = bigBlind <= 10 ? Math.round(bigBlind * 10).toLocaleString() : '0';
-            var mediumPot = bigBlind > 10 && bigBlind <= 30 ? Math.round(bigBlind * 20).toLocaleString() : '0';
-            var bigPot = bigBlind > 30 && bigBlind <= 50 ? Math.round(bigBlind * 50).toLocaleString() : '0';
-            var hugePot = bigBlind > 50 ? Math.round(bigBlind * 100).toLocaleString() : '0';
+            var smallPotFrom = bigBlind ? Math.round(bigBlind).toLocaleString() : '0';
+            var smallPotTo = bigBlind * 10 ? Math.round(bigBlind * 10).toLocaleString() : '0';
+            var mediumPotFrom = bigBlind * 10 ? Math.round(bigBlind * 10).toLocaleString() : '0';
+            var mediumPotTo = bigBlind * 30 ? Math.round(bigBlind * 30).toLocaleString() : '0';
+            var bigPotFrom = bigBlind * 30 ? Math.round(bigBlind * 30).toLocaleString() : '0';
+            var bigPotTo = bigBlind * 50 ? Math.round(bigBlind * 50).toLocaleString() : '0';
+            var hugePot = bigBlind * 50 ? Math.round(bigBlind * 50).toLocaleString() : '0';
 
             // Display the results
-            smallResultSpan.textContent = smallPot;
-            mediumResultSpan.textContent = mediumPot;
-            bigResultSpan.textContent = bigPot;
+            smallFromSpan.textContent = smallPotFrom;
+            smallToSpan.textContent = smallPotTo;
+            mediumFromSpan.textContent = mediumPotFrom;
+            mediumToSpan.textContent = mediumPotTo;
+            bigFromSpan.textContent = bigPotFrom;
+            bigToSpan.textContent = bigPotTo;
             hugeResultSpan.textContent = hugePot;
         }
 
