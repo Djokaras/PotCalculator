@@ -128,11 +128,11 @@
             // Get the big blind value
             var bigBlind = parseFloat(bigBlindInput.value);
 
-            // Arbitrary calculations for small, medium, big, and huge pots
-            var smallPot = Math.round(bigBlind * 10).toLocaleString();
-            var mediumPot = Math.round(bigBlind * 20).toLocaleString();
-            var bigPot = Math.round(bigBlind * 50).toLocaleString();
-            var hugePot = Math.round(bigBlind * 100).toLocaleString();
+            // Adjusted calculations for small, medium, big, and huge pots
+            var smallPot = bigBlind <= 10 ? Math.round(bigBlind * 10).toLocaleString() : '0';
+            var mediumPot = bigBlind > 10 && bigBlind <= 30 ? Math.round(bigBlind * 20).toLocaleString() : '0';
+            var bigPot = bigBlind > 30 && bigBlind <= 50 ? Math.round(bigBlind * 50).toLocaleString() : '0';
+            var hugePot = bigBlind > 50 ? Math.round(bigBlind * 100).toLocaleString() : '0';
 
             // Display the results
             smallResultSpan.textContent = smallPot;
